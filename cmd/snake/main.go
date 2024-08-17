@@ -14,11 +14,13 @@ func main() {
 
 	rl.SetTargetFPS(60)
 	food := models.NewFood()
+	snake := models.NewSnake()
 
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(colors.Green)
 		food.Draw()
+		snake.Draw()
 		rl.EndDrawing()
 	}
 }
