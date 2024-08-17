@@ -32,7 +32,7 @@ func main() {
 			game.Update()
 		}
 
-		game.Snake.Move()
+		game.Move()
 		rl.ClearBackground(colors.Green)
 		game.Draw()
 		rl.EndDrawing()

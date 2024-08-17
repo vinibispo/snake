@@ -44,21 +44,3 @@ func (s *Snake) Update() {
 		s.Body = s.Body[:len(s.Body)-1]
 	}
 }
-
-func (s *Snake) Move() {
-	if rl.IsKeyPressed(rl.KeyUp) && s.Direction.Y != 1 {
-		s.Direction = rl.NewVector2(0, -1)
-	}
-
-	if rl.IsKeyPressed(rl.KeyDown) && s.Direction.Y != -1 {
-		s.Direction = rl.NewVector2(0, 1)
-	}
-
-	if rl.IsKeyPressed(rl.KeyLeft) && s.Direction.X != 1 {
-		s.Direction = rl.NewVector2(-1, 0)
-	}
-
-	if rl.IsKeyPressed(rl.KeyRight) && s.Direction.X != -1 {
-		s.Direction = rl.NewVector2(1, 0)
-	}
-}

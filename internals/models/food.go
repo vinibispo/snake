@@ -1,18 +1,11 @@
 package models
 
 import (
-	rl "github.com/gen2brain/raylib-go/raylib"
 	constants "snake/internals"
-)
+	"snake/internals/helpers"
 
-func elementInSlice(element rl.Vector2, list []rl.Vector2) bool {
-	for _, b := range list {
-		if rl.Vector2Equals(element, b) {
-			return true
-		}
-	}
-	return false
-}
+	rl "github.com/gen2brain/raylib-go/raylib"
+)
 
 type Food struct {
 	Position rl.Vector2
@@ -39,7 +32,7 @@ func (f *Food) GenRandomCell() rl.Vector2 {
 
 func (f *Food) GenRandomPos(snakeBody []rl.Vector2) rl.Vector2 {
 	position := f.GenRandomCell()
-	for elementInSlice(position, snakeBody) {
+	for helpers.ElementInSlice(position, snakeBody) {
 		position = f.GenRandomCell()
 	}
 	return position
