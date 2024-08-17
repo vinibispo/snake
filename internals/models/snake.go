@@ -8,8 +8,9 @@ import (
 )
 
 type Snake struct {
-	Body      []rl.Vector2
-	Direction rl.Vector2
+	Body       []rl.Vector2
+	Direction  rl.Vector2
+	addSegment bool
 }
 
 func NewSnake() *Snake {
@@ -37,7 +38,11 @@ func (s *Snake) Update() {
 	head := s.Body[0]
 	newHead := rl.NewVector2(head.X+s.Direction.X, head.Y+s.Direction.Y)
 	s.Body = append([]rl.Vector2{newHead}, s.Body...)
-	s.Body = s.Body[:len(s.Body)-1]
+	if s.addSegment {
+		s.addSegment = false
+	} else {
+		s.Body = s.Body[:len(s.Body)-1]
+	}
 }
 
 func (s *Snake) Move() {

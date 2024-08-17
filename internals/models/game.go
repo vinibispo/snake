@@ -34,5 +34,6 @@ func (g *Game) Move() {
 func (g *Game) CheckCollisionWithFood() {
 	if rl.Vector2Equals(g.Snake.Body[0], g.Food.Position) {
 		g.Food.Position = g.Food.GenRandomPos(g.Snake.Body)
+		g.Snake.addSegment = true
 	}
 }
