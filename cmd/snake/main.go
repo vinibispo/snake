@@ -24,19 +24,17 @@ func main() {
 	rl.InitWindow(size, size, "Retro Snake")
 
 	rl.SetTargetFPS(60)
-	food := models.NewFood()
-	snake := models.NewSnake()
+	game := models.NewGame()
 
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		if eventTriggered(0.2) {
-			snake.Update()
+			game.Update()
 		}
 
-		snake.Move()
+		game.Snake.Move()
 		rl.ClearBackground(colors.Green)
-		food.Draw()
-		snake.Draw()
+		game.Draw()
 		rl.EndDrawing()
 	}
 }
