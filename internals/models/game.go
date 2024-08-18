@@ -11,6 +11,7 @@ type Game struct {
 	Snake   *Snake
 	Food    *Food
 	running bool
+	Score   int
 }
 
 func NewGame() *Game {
@@ -63,6 +64,7 @@ func (g *Game) CheckCollisionWithFood() {
 	if rl.Vector2Equals(g.Snake.Body[0], g.Food.Position) {
 		g.Food.Position = g.Food.GenRandomPos(g.Snake.Body)
 		g.Snake.addSegment = true
+		g.Score++
 	}
 }
 
@@ -87,4 +89,5 @@ func (g *Game) Over() {
 	g.Snake = NewSnake()
 	g.Food = NewFood(g.Snake.Body)
 	g.running = false
+	g.Score = 0
 }

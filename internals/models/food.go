@@ -39,5 +39,5 @@ func (f *Food) GenRandomPos(snakeBody []rl.Vector2) rl.Vector2 {
 }
 
 func (f *Food) Draw() {
-	rl.DrawTexture(f.Texture, int32(f.Position.X)*constants.CellSize, int32(f.Position.Y)*constants.CellSize, rl.White)
+	rl.DrawTexture(f.Texture, constants.Offset+int32(f.Position.X)*constants.CellSize, constants.Offset+int32(f.Position.Y)*constants.CellSize, rl.White)
 }

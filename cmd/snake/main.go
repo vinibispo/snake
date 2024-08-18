@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	constants "snake/internals"
 	"snake/internals/colors"
 	"snake/internals/models"
@@ -20,7 +21,7 @@ func eventTriggered(interval float64) bool {
 }
 
 func main() {
-	var size int32 = constants.CellSize * constants.CellCount
+	var size int32 = constants.Offset*2 + constants.CellSize*constants.CellCount
 	rl.InitWindow(size, size, "Retro Snake")
 
 	rl.SetTargetFPS(60)
@@ -34,6 +35,11 @@ func main() {
 
 		game.Move()
 		rl.ClearBackground(colors.Green)
+		rect := rl.NewRectangle(constants.Offset-5, constants.Offset-5, constants.CellSize*constants.CellCount+10, constants.CellSize*constants.CellCount+10)
+		rl.DrawRectangleLinesEx(rect, 5, colors.DarkGreen)
+		rl.DrawText("Retro Snake", constants.Offset-5, 20, 40, colors.DarkGreen)
+
+		rl.DrawText(fmt.Sprint(game.Score), constants.Offset-5, constants.Offset+constants.CellSize*constants.CellCount+10, 40, colors.DarkGreen)
 		game.Draw()
 		rl.EndDrawing()
 	}

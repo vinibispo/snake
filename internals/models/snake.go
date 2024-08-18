@@ -29,7 +29,7 @@ func (s *Snake) Draw() {
 	for _, part := range s.Body {
 		x := part.X
 		y := part.Y
-		segment := rl.NewRectangle(x*constants.CellSize, y*constants.CellSize, constants.CellSize, constants.CellSize)
+		segment := rl.NewRectangle(constants.Offset+x*constants.CellSize, constants.Offset+y*constants.CellSize, constants.CellSize, constants.CellSize)
 		rl.DrawRectangleRounded(segment, 0.5, 6, colors.DarkGreen)
 	}
 }
