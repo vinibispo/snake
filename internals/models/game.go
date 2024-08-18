@@ -8,18 +8,23 @@ import (
 )
 
 type Game struct {
-	Snake   *Snake
-	Food    *Food
-	running bool
-	Score   int
+	Snake     *Snake
+	Food      *Food
+	running   bool
+	Score     int
+	eatSound  rl.Sound
+	wallSound rl.Sound
 }
 
 func NewGame() *Game {
+	rl.InitAudioDevice()
 	g := &Game{
-		Snake: NewSnake(),
+		Snake:   NewSnake(),
+		running: true,
 	}
 	g.Food = NewFood(g.Snake.Body)
-	g.running = true
+	g.eatSound = rl.LoadSound("assets/eat.mp3")
+	g.wallSound = rl.LoadSound("assets/wall.mp3")
 	return g
 }
 
@@ -65,6 +70,7 @@ func (g *Game) CheckCollisionWithFood() {
 		g.Food.Position = g.Food.GenRandomPos(g.Snake.Body)
 		g.Snake.addSegment = true
 		g.Score++
+		rl.PlaySound(g.eatSound)
 	}
 }
 
@@ -90,4 +96,5 @@ func (g *Game) Over() {
 	g.Food = NewFood(g.Snake.Body)
 	g.running = false
 	g.Score = 0
+	rl.PlaySound(g.wallSound)
 }
